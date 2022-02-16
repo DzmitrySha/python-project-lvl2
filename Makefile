@@ -1,7 +1,7 @@
 install: 
 	poetry install
 
-gendiff: 
+run-gendiff:
 	poetry run gendiff
 
 build:
