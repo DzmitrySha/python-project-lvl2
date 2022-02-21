@@ -5,8 +5,6 @@
 
 ## Пример работы скрипта "Вычислитель отличий" (gendiff)
 
-___
-
 Запуск справки: `gendiff -h`
 
 Запуск скрипта: `gendiff file_path1.json file_path1.json`
