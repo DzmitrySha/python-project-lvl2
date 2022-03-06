@@ -6,9 +6,9 @@ def generate_diff(file_path1, file_path2):
     first_file = dict(json.load(open(file_path1)))
     second_file = dict(json.load(open(file_path2)))
 
-    cross_files_keys = first_file.keys() & second_file.keys()
-    file1_unique_keys = first_file.keys() - second_file.keys()
-    file2_unique_keys = second_file.keys() - first_file.keys()
+    cross_files_keys = sorted(first_file.keys() & second_file.keys())
+    file1_unique_keys = sorted(first_file.keys() - second_file.keys())
+    file2_unique_keys = sorted(second_file.keys() - first_file.keys())
 
     for key in cross_files_keys:
         if first_file[key] == second_file[key]:
