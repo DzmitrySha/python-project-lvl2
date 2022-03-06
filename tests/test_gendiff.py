@@ -4,17 +4,17 @@ from gendiff import generate_diff
 
 @pytest.fixture
 def file_path1():
-	return "fixtures/file1.json"
+	return "tests/fixtures/file1.json"
 
 
 @pytest.fixture
 def file_path2():
-	return "fixtures/file2.json"
+	return "tests/fixtures/file2.json"
 
 
 @pytest.fixture
 def result_json():
-	with open("fixtures/result_json") as file:
+	with open("tests/fixtures/result_json") as file:
 		result_json = file.read()
 	return result_json
 
