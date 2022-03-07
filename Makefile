@@ -1,9 +1,6 @@
 install: 
 	poetry install
 
-run-gendiff:
-	poetry run gendiff
-
 build:
 	poetry build
 
@@ -20,4 +17,4 @@ lint:
 	poetry run flake8 gendiff
 
 test:
-	poetry run pytest
+	poetry run pytest --cov=gendiff
