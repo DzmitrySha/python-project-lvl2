@@ -1,11 +1,11 @@
 ### Tests and linter status:
-[![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/DzmitrySha/python-project-lvl2)
+[![Maintainability](https://api.codeclimate.com/v1/badges/14d8f0ef4843b93cd1d9/maintainability)](https://codeclimate.com/github/DzmitrySha/python-project-lvl2/maintainability)
 
 [![Actions Status](https://github.com/DzmitrySha/python-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/DzmitrySha/python-project-lvl2/actions)
 
-[![workflow](https://github.com/DzmitrySha/python-project-lvl2/actions/workflows/linter-check.yml/badge.svg)](https://github.com/DzmitrySha/python-project-lvl2/actions/workflows/linter-check.yml)
+[![workflow](https://github.com/DzmitrySha/python-project-lvl2/actions/workflows/pyci-check.yml/badge.svg)](https://github.com/DzmitrySha/python-project-lvl2/actions/workflows/pyci-check.yml)
 
-[![Test Coverage](https://api.codeclimate.com/v1/badges/df66c0cbbeca7d822f23/test_coverage)](https://codeclimate.com/github/DzmitrySha/python-project-lvl2/test_coverage)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/14d8f0ef4843b93cd1d9/test_coverage)](https://codeclimate.com/github/DzmitrySha/python-project-lvl2/test_coverage)
 
 ## Пример работы скрипта "Вычислитель отличий" (gendiff)
 
