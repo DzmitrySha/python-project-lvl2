@@ -1,4 +1,4 @@
-name: linter check
+name: CI check
 on: push
 jobs:
   build:
@@ -20,3 +20,10 @@ jobs:
       - name: Run Tests
         run: |
           make test
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v3.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.TEST_COVERAGE_LVL2 }}
+        with:
+          coverageCommand: make test-coverage
+          debug: true
