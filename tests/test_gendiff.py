@@ -1,5 +1,6 @@
 import pytest
 from gendiff import generate_diff
+from gendiff.parser import parser
 
 
 @pytest.fixture
@@ -13,12 +14,12 @@ def file_path2():
 
 
 @pytest.fixture
-def result_json():
-	with open("tests/fixtures/result_json") as file:
-		result_json = file.read()
-	return result_json
+def result():
+	with open("tests/fixtures/result") as file:
+		result = file.read()
+	return result
 
 
-def test_generate_diff(file_path1, file_path2, result_json):
-	result = str(generate_diff(file_path1, file_path2))
-	assert result == result_json
+def test_generate_diff(file_path1, file_path2, result):
+	result_diff = str(generate_diff(file_path1, file_path2))
+	assert result_diff == result
