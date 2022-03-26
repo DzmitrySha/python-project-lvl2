@@ -1,10 +1,9 @@
-import json
+from gendiff.parser import parser
 
 
 def generate_diff(file_path1, file_path2):
     differences = ''
-    first_file = dict(json.load(open(file_path1)))
-    second_file = dict(json.load(open(file_path2)))
+    first_file, second_file = parser(file_path1, file_path2)
 
     cross_files_keys = sorted(first_file.keys() & second_file.keys())
     file1_unique_keys = sorted(first_file.keys() - second_file.keys())
