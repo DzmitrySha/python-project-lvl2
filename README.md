@@ -9,11 +9,15 @@
 
 Запуск справки: `gendiff -h`
 
-Запуск скрипта: `gendiff file_path1.json file_path1.json`
+Запуск скрипта: `gendiff <file_path1> <file_path2>`
 
-Сравнение двух плоских файлов формата JSON.
+ПРИМЕР: Сравнение двух плоских файлов формата JSON.
 
 [![asciicast](https://asciinema.org/a/B2pi2NsEY6WNM7aU9OBIBodvM.png)](https://asciinema.org/a/B2pi2NsEY6WNM7aU9OBIBodvM)
+
+ПРИМЕР: Сравнение двух плоских файлов формата YAML (YML).
+
+[![asciicast](https://asciinema.org/a/480948.svg)](https://asciinema.org/a/480948)
 
 Результат работы скрипта - строка, с обнаруженными в файлах отличиями. 
 
