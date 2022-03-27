@@ -1,25 +1,21 @@
 import pytest
 from gendiff import generate_diff
-from gendiff.parser import parser
+from tests.fixtures.test_results import RESULT_JSON, RESULT_YML
 
 
 @pytest.fixture
-def file_path1():
-	return "tests/fixtures/file1.json"
+def paths():
+	paths = {
+		"json1": "tests/fixtures/file1.json",
+		"json2": "tests/fixtures/file2.json",
+		"yml1": "tests/fixtures/file1.yml",
+		"yml2": "tests/fixtures/file2.yml",
+	}
+	return paths
 
 
-@pytest.fixture
-def file_path2():
-	return "tests/fixtures/file2.json"
-
-
-@pytest.fixture
-def result():
-	with open("tests/fixtures/result") as file:
-		result = file.read()
-	return result
-
-
-def test_generate_diff(file_path1, file_path2, result):
-	result_diff = str(generate_diff(file_path1, file_path2))
-	assert result_diff == result
+def test_generate_diff(paths):
+	result_diff_json = str(generate_diff(paths["json1"], paths["json2"]))
+	result_diff_yml = str(generate_diff(paths["yml1"], paths["yml2"]))
+	assert result_diff_json == RESULT_JSON
+	assert result_diff_yml == RESULT_YML
