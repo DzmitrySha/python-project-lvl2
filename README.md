@@ -13,11 +13,11 @@
 
 ПРИМЕР: Сравнение двух плоских файлов формата JSON.
 
-[![asciicast](https://asciinema.org/a/B2pi2NsEY6WNM7aU9OBIBodvM.png)](https://asciinema.org/a/B2pi2NsEY6WNM7aU9OBIBodvM)
+[![asciicast](https://asciinema.org/a/B2pi2NsEY6WNM7aU9OBIBodvM.svg)](https://asciinema.org/a/B2pi2NsEY6WNM7aU9OBIBodvM)
 
 ПРИМЕР: Сравнение двух плоских файлов формата YAML (YML).
 
-[![asciicast](https://asciinema.org/a/480948.svg)](https://asciinema.org/a/480948)
+[![asciicast](https://asciinema.org/a/6goaDnMwFvwPpbIWO2NhsC3Sq.svg)](https://asciinema.org/a/6goaDnMwFvwPpbIWO2NhsC3Sq)
 
 Результат работы скрипта - строка, с обнаруженными в файлах отличиями. 
 
