@@ -2,22 +2,25 @@ from gendiff.enter_parser import parser
 
 
 def generate_diff(file_path1, file_path2):
-    differences = ''
-    first_file, second_file = parser(file_path1, file_path2)
+    first_dict, second_dict = parser(file_path1, file_path2)
 
-    cross_files_keys = sorted(first_file.keys() & second_file.keys())
-    file1_unique_keys = sorted(first_file.keys() - second_file.keys())
-    file2_unique_keys = sorted(second_file.keys() - first_file.keys())
+    cross_files_keys = sorted(first_dict.keys() & second_dict.keys())
+    file1_unique_keys = sorted(first_dict.keys() - second_dict.keys())
+    file2_unique_keys = sorted(second_dict.keys() - first_dict.keys())
 
-    for key in cross_files_keys:
-        if first_file[key] == second_file[key]:
-            differences += f"  {key}: {first_file[key]}\n"
-        else:
-            differences += f"- {key}: {first_file[key]}\n"
-            differences += f"+ {key}: {second_file[key]}\n"
-    for key in file1_unique_keys:
-        differences += f"- {key}: {first_file[key]}\n"
-    for key in file2_unique_keys:
-        differences += f"+ {key}: {second_file[key]}\n"
+    def make_plain_diff(first_dict, second_dict):
+        diff = ''
+        for key in cross_files_keys:
+            if first_dict[key] == second_dict[key]:
+                diff += f"  {key}: {first_dict[key]}\n"
+            else:
+                diff += f"- {key}: {first_dict[key]}\n"
+                diff += f"+ {key}: {second_dict[key]}\n"
+        for key in file1_unique_keys:
+            diff += f"- {key}: {first_dict[key]}\n"
+        for key in file2_unique_keys:
+            diff += f"+ {key}: {second_dict[key]}\n"
 
-    return "{\n" + differences.lower() + "}"
+        return "{\n" + diff.lower() + "}"
+
+    return make_plain_diff(first_dict, second_dict)
