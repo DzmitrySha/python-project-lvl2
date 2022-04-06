@@ -7,7 +7,8 @@ RESULT_PLAIN = """{
 + verbose: true
 }"""
 
-RESULT_TREE = """{
+RESULT_TREE = """
+{
     common: {
       + follow: false
         setting1: Value 1
