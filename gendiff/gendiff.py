@@ -9,18 +9,19 @@ def generate_diff(file_path1, file_path2):
     file2_unique_keys = sorted(second_dict.keys() - first_dict.keys())
 
     def make_plain_diff(first_dict, second_dict):
-        diff = ''
+        diff = []
         for key in cross_files_keys:
             if first_dict[key] == second_dict[key]:
-                diff += f"  {key}: {first_dict[key]}\n"
+                diff.append(f"  {key}: {first_dict[key]}")
             else:
-                diff += f"- {key}: {first_dict[key]}\n"
-                diff += f"+ {key}: {second_dict[key]}\n"
+                diff.append(f"- {key}: {first_dict[key]}")
+                diff.append(f"+ {key}: {second_dict[key]}")
         for key in file1_unique_keys:
-            diff += f"- {key}: {first_dict[key]}\n"
+            diff.append(f"- {key}: {first_dict[key]}")
         for key in file2_unique_keys:
-            diff += f"+ {key}: {second_dict[key]}\n"
+            diff.append(f"+ {key}: {second_dict[key]}")
 
-        return "{\n" + diff.lower() + "}"
+        diff = "{\n" + "\n".join(diff).lower() + "\n}"
+        return diff
 
     return make_plain_diff(first_dict, second_dict)
