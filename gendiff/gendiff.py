@@ -17,9 +17,9 @@ def make_diff(dict_1, dict_2):
 
         if child_1 == child_2:
             diff.append(f"  {key}: {child_1}")
-        # elif isinstance(child_1, dict) and isinstance(child_2, dict):
-        #     diff.append(key)
-        #     diff.append(make_diff(child_1, child_2))
+        elif isinstance(child_1, dict) and isinstance(child_2, dict):
+            diff.append(key)
+            diff.append(make_diff(child_1, child_2))
         else:
             diff.append(f"- {key}: {child_1}")
             diff.append(f"+ {key}: {child_2}")
