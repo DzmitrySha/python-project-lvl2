@@ -1,5 +1,7 @@
 #  constants storage
 
-ADDED = "+ "
-REMOVED = "- "
-UNCHANGED = "  "
+ADDED = "  + "
+REMOVED = "  - "
+UNCHANGED = "    "
+CHANGED = "changed"
+DICT = "dict"

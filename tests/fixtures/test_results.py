@@ -1,14 +1,13 @@
 RESULT_PLAIN = """{
-  host: hexlet.io
-- timeout: 50
-+ timeout: 20
-- follow: false
-- proxy: 123.234.53.22
-+ verbose: true
+  - follow: false
+    host: hexlet.io
+  - proxy: 123.234.53.22
+  - timeout: 50
+  + timeout: 20
+  + verbose: true
 }"""
 
-RESULT_TREE = """
-{
+RESULT_TREE = """{
     common: {
       + follow: false
         setting1: Value 1
