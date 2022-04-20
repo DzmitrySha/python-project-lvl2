@@ -1,7 +1,7 @@
 # make difference module
 
 from gendiff.enter_parser import parser
-from gendiff.stylish import stylish_plain
+from gendiff.stylish import stylish
 from gendiff.constants import ADDED, REMOVED, CHANGED, UNCHANGED, DICT
 
 
@@ -47,7 +47,7 @@ def make_diff(dict_1, dict_2) -> dict:
 def generate_diff(file_path1, file_path2):
     dict_1, dict_2 = parser(file_path1, file_path2)
     diff = make_diff(dict_1, dict_2)
-    return stylish_plain(diff)
+    return stylish(diff)
 
 
 # def make_diff(dict_1, dict_2):
