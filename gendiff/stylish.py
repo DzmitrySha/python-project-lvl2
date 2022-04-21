@@ -9,9 +9,9 @@ def is_plain_dict(dictionary):
 
 
 def edit_value(value):
-    if value == True or value == False:
+    if value is True or value is False:
         return str(value).lower()
-    elif value == None:
+    elif value is None:
         return "null"
     return str(value)
 
