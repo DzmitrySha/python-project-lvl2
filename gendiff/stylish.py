@@ -2,18 +2,12 @@
 from gendiff.constants import ADDED, REMOVED, UNCHANGED, CHANGED, DICT, PREFIX
 
 
-def is_plain_dict(dictionary):
-    if isinstance(dictionary, dict):
-        return not any(isinstance(i, dict) for i in dictionary.values())
-    return True
-
-
 def edit_value(value):
-    if value is True or value is False:
+    if isinstance(value, bool):
         return str(value).lower()
     elif value is None:
         return "null"
-    return str(value)
+    return value
 
 
 def to_string(tree, depth=1):
@@ -31,12 +25,11 @@ def to_string(tree, depth=1):
                 res.append(PREFIX * deep + curr_prefix + f"{k}: " + "{")
                 res.append(prev_prefix + to_str_dict(v, deep + 1))
                 res.append(PREFIX * deep + curr_prefix + "}")
-
         return "\n".join(res)
 
     def to_str_tree_dict(dictionary, status):
         for k, v in dictionary.items():
-            if is_plain_dict(dictionary):
+            if not any(isinstance(i, dict) for i in dictionary.values()):
                 v = edit_value(v)
                 result.append(prev_prefix + status + f"{k}: {v}")
             else:
@@ -49,6 +42,7 @@ def to_string(tree, depth=1):
         if status == DICT:
             result.append(curr_prefix + f"{key}: " + "{")
             result.append(to_string(value["diff"], depth + 1))
+
         elif status == CHANGED:
             to_str_tree_dict(value["diff_rem"], status=REMOVED)
             to_str_tree_dict(value["diff_add"], status=ADDED)
