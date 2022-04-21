@@ -44,10 +44,10 @@ def make_diff(dict_1, dict_2) -> dict:
     return dict(sorted(diff.items()))
 
 
-def generate_diff(file_path1, file_path2):
+def generate_diff(file_path1, file_path2, format=stylish):
     dict_1, dict_2 = parser(file_path1, file_path2)
     diff = make_diff(dict_1, dict_2)
-    return stylish(diff)
+    return format(diff)
 
 
 # def make_diff(dict_1, dict_2):
