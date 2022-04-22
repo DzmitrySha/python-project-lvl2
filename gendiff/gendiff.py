@@ -4,6 +4,10 @@ from gendiff.enter_parser import parser
 from gendiff.stylish import stylish
 from gendiff.constants import ADDED, REMOVED, CHANGED, UNCHANGED, DICT
 
+CHOOSE_FORMAT = {
+    "stylish": stylish,
+}
+
 
 def make_diff(dict_1, dict_2) -> dict:
     cross_dicts_keys = dict_1.keys() & dict_2.keys()
@@ -44,39 +48,7 @@ def make_diff(dict_1, dict_2) -> dict:
     return dict(sorted(diff.items()))
 
 
-def generate_diff(file_path1, file_path2, formatter=stylish):
+def generate_diff(file_path1, file_path2, formatter="stylish"):
     dict_1, dict_2 = parser(file_path1, file_path2)
     diff = make_diff(dict_1, dict_2)
-    return formatter(diff)
-
-
-# def make_diff(dict_1, dict_2):
-#     cross_dicts_keys = sorted(dict_1.keys() & dict_2.keys())
-#     dict1_unique_keys = sorted(dict_1.keys() - dict_2.keys())
-#     dict2_unique_keys = sorted(dict_2.keys() - dict_1.keys())
-#     diff = []
-#
-#     for key in cross_dicts_keys:
-#         child_1 = dict_1[key]
-#         child_2 = dict_2[key]
-#
-#         if child_1 == child_2:
-#             diff.append(f"{UNCHANGED}{key}: {child_1}")
-#         elif isinstance(child_1, dict) and isinstance(child_2, dict):
-#             diff.append(key)
-#             diff.append(make_diff(child_1, child_2))
-#         else:
-#             diff.append(f"{REMOVED}{key}: {child_1}")
-#             diff.append(f"{ADDED}{key}: {child_2}")
-#     for key in dict1_unique_keys:
-#         diff.append(f"{REMOVED}{key}: {dict_1[key]}")
-#     for key in dict2_unique_keys:
-#         diff.append(f"{ADDED}{key}: {dict_2[key]}")
-#
-#     return diff
-#
-#
-# def generate_diff(file_path1, file_path2):
-#     dict_1, dict_2 = parser(file_path1, file_path2)
-#     diff = make_diff(dict_1, dict_2)
-#     return to_str(diff)
+    return CHOOSE_FORMAT[formatter](diff)
