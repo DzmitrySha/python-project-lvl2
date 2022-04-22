@@ -48,7 +48,7 @@ def make_diff(dict_1, dict_2) -> dict:
     return dict(sorted(diff.items()))
 
 
-def generate_diff(file_path1, file_path2, formatter="stylish"):
+def generate_diff(file_path1, file_path2, format_name="stylish"):
     dict_1, dict_2 = parser(file_path1, file_path2)
     diff = make_diff(dict_1, dict_2)
-    return CHOOSE_FORMAT[formatter](diff)
+    return CHOOSE_FORMAT[format_name](diff)
