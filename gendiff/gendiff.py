@@ -1,7 +1,7 @@
 # make difference module
 
 from gendiff.enter_parser import parser
-from gendiff.stylish import stylish
+from gendiff.formatters.stylish import stylish
 from gendiff.constants import ADDED, REMOVED, CHANGED, UNCHANGED, DICT
 
 CHOOSE_FORMAT = {
