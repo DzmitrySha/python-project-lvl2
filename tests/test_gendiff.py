@@ -18,13 +18,36 @@ def paths():
     return paths
 
 
-def test_generate_diff(paths):
-    result_diff_json = str(generate_diff(paths["json1"], paths["json2"]))
-    result_diff_yml = str(generate_diff(paths["yml1"], paths["yml2"]))
-    result_diff_json_tree = str(generate_diff(paths["tree_json1"],
-                                              paths["tree_json2"]))
-    result_diff_yml_tree = str(generate_diff(paths["tree_yml1"],
-                                             paths["tree_yml2"]))
+@pytest.fixture
+def format_name():
+    format_name = {
+        "stylish": "stylish",
+        "plain": "plain",
+    }
+    return format_name
+
+
+def test_generate_diff(paths, format_name):
+    result_diff_json = generate_diff(
+        paths["json1"],
+        paths["json2"],
+        format_name["stylish"],
+    )
+    result_diff_yml = generate_diff(
+        paths["yml1"],
+        paths["yml2"],
+        format_name["stylish"],
+    )
+    result_diff_json_tree = generate_diff(
+        paths["tree_json1"],
+        paths["tree_json2"],
+        format_name["stylish"],
+    )
+    result_diff_yml_tree = generate_diff(
+        paths["tree_yml1"],
+        paths["tree_yml2"],
+        format_name["stylish"],
+    )
     assert result_diff_json == RESULT_PLAIN
     assert result_diff_yml == RESULT_PLAIN
     assert result_diff_json_tree == RESULT_TREE
