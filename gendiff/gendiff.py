@@ -1,11 +1,12 @@
 # make difference module
 
 from gendiff.enter_parser import parser
-from gendiff.formatters.stylish import stylish
+from gendiff.formatters import format_stylish, format_plain
 from gendiff.constants import ADDED, REMOVED, CHANGED, UNCHANGED, DICT
 
 CHOOSE_FORMAT = {
-    "stylish": stylish,
+    "stylish": format_stylish,
+    "plain": format_plain,
 }
 
 
