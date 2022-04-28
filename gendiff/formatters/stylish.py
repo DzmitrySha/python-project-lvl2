@@ -1,5 +1,5 @@
 # make stylish module
-from gendiff.constants import ADDED, REMOVED, CHANGED, DICT, PREFIX
+from gendiff.constants import ADDED, REMOVED, CHANGED, DICT, UNCHANGED
 
 
 def edit_value(value):
@@ -11,8 +11,8 @@ def edit_value(value):
 
 
 def to_string(tree, depth=1):
-    curr_prefix = PREFIX * depth
-    prev_prefix = curr_prefix[:-len(PREFIX)]
+    curr_prefix = UNCHANGED * depth
+    prev_prefix = curr_prefix[:-4]
     result = []
 
     def to_str_dict(dictionary, deep=1):
@@ -20,11 +20,11 @@ def to_string(tree, depth=1):
         for k, v in dictionary.items():
             if not isinstance(v, dict):
                 v = edit_value(v)
-                res.append(PREFIX * deep + curr_prefix + f"{k}: {v}")
+                res.append(UNCHANGED * deep + curr_prefix + f"{k}: {v}")
             else:
-                res.append(PREFIX * deep + curr_prefix + f"{k}: " + "{")
+                res.append(UNCHANGED * deep + curr_prefix + f"{k}: " + "{")
                 res.append(prev_prefix + to_str_dict(v, deep + 1))
-                res.append(PREFIX * deep + curr_prefix + "}")
+                res.append(UNCHANGED * deep + curr_prefix + "}")
         return "\n".join(res)
 
     def to_str_tree_dict(dictionary, status):
@@ -52,5 +52,5 @@ def to_string(tree, depth=1):
     return result
 
 
-def stylish(diff: dict):
+def format_stylish(diff: dict):
     return "{\n" + to_string(diff)
