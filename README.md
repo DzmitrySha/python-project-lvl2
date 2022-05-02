@@ -27,6 +27,10 @@
 
 [![asciicast](https://asciinema.org/a/3L3J2MUTMNwJSQZ3Q9UkiaxNf.svg)](https://asciinema.org/a/3L3J2MUTMNwJSQZ3Q9UkiaxNf)
 
+ПРИМЕР: вывод отображения сравнения двух файлов в формате JSON.
+
+[![asciicast](https://asciinema.org/a/IqWwqnjCVx7z6BTszNQyYmDQA.svg)](https://asciinema.org/a/IqWwqnjCVx7z6BTszNQyYmDQA)
+
 Результат работы скрипта - строка, с обнаруженными в файлах отличиями. 
 
 _Отсутствие плюса или минуса говорит о том, что ключ есть в обоих файлах, и его значения совпадают. Во всех остальных ситуациях значение по ключу либо отличается, либо ключ есть только в одном файле._ 
