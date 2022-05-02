@@ -11,18 +11,21 @@
 
 Запуск скрипта: `gendiff <file_path1> <file_path2>`
 
-ПРИМЕР: Сравнение двух плоских файлов формата JSON.
+ПРИМЕР: Сравнение двух плоских файлов: JSON.
 
 [![asciicast](https://asciinema.org/a/B2pi2NsEY6WNM7aU9OBIBodvM.svg)](https://asciinema.org/a/B2pi2NsEY6WNM7aU9OBIBodvM)
 
-ПРИМЕР: Сравнение двух плоских файлов формата YAML(YML).
+ПРИМЕР: Сравнение двух плоских файлов: YAML(YML).
 
 [![asciicast](https://asciinema.org/a/6goaDnMwFvwPpbIWO2NhsC3Sq.svg)](https://asciinema.org/a/6goaDnMwFvwPpbIWO2NhsC3Sq)
 
-ПРИМЕР: Сравнение двух файлов c рекурсивной структурой формата YAML(YML) или JSON.
+ПРИМЕР: Сравнение двух файлов c рекурсивной структурой: YAML(YML) или JSON.
 
 [![asciicast](https://asciinema.org/a/6jZ3XV9H5TrxOdujYCRSfI1rg.svg)](https://asciinema.org/a/6jZ3XV9H5TrxOdujYCRSfI1rg)
 
+ПРИМЕР: Плоский формат отображения - cравнение двух файлов c рекурсивной структурой YAML(YML) или JSON.
+
+[![asciicast](https://asciinema.org/a/3L3J2MUTMNwJSQZ3Q9UkiaxNf.svg)](https://asciinema.org/a/3L3J2MUTMNwJSQZ3Q9UkiaxNf)
 
 Результат работы скрипта - строка, с обнаруженными в файлах отличиями. 
 
