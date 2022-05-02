@@ -31,12 +31,19 @@ def make_value(value, key):
     return edit_value(value[key])
 
 
-def format_plain(diff: dict):
+def format_plain(diff: dict, node=""):
     result = []
     for key, value in diff.items():
-        path = f"'{key}'"
         status = value["status"]
-        if status == ADDED:
+
+        if node:
+            path = node + f".{key}"
+        else:
+            path = f"{key}"
+
+        if status == DICT:
+            result.append(format_plain(value["diff"], path))
+        elif status == ADDED:
             value2 = make_value(value["diff"], key)
             phrase = make_phrase("added", path, value2=value2)
             result.append(phrase)
@@ -49,7 +56,5 @@ def format_plain(diff: dict):
             value2 = make_value(value["diff_add"], key)
             phrase = make_phrase("updated", path, value1=value1, value2=value2)
             result.append(phrase)
-        elif status == DICT:
-            result.append(format_plain(value["diff"]))
 
     return "\n".join(result)
