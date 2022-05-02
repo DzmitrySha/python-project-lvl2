@@ -34,7 +34,7 @@ def make_value(value, key):
 def format_plain(diff: dict):
     result = []
     for key, value in diff.items():
-        path = key
+        path = f"'{key}'"
         status = value["status"]
         if status == ADDED:
             value2 = make_value(value["diff"], key)
