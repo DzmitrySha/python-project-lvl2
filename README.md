@@ -5,31 +5,57 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/14d8f0ef4843b93cd1d9/maintainability)](https://codeclimate.com/github/DzmitrySha/python-project-lvl2/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/14d8f0ef4843b93cd1d9/test_coverage)](https://codeclimate.com/github/DzmitrySha/python-project-lvl2/test_coverage)
 
-## Пример работы скрипта "Вычислитель отличий" (gendiff)
+---
 
-Запуск справки: `gendiff -h`
+## Инструкции
 
-Запуск скрипта: `gendiff <file_path1> <file_path2>`
+**Запуск справки:**
 
-ПРИМЕР: Сравнение двух плоских файлов: JSON.
+`gendiff -h`
+
+**Запуск скрипта c настройками по-умолчанию:** 
+
+`gendiff <file_path1> <file_path2>`
+
+**Запуск скрипта с выбором формата вывода:** 
+
+`gendiff -f {stylish, plain, json} <file_path1> <file_path2>`
+
+
+## Примеры работы скрипта "Вычислитель отличий"
+
+---
+
+Сравнение двух плоских файлов: JSON.
 
 [![asciicast](https://asciinema.org/a/B2pi2NsEY6WNM7aU9OBIBodvM.svg)](https://asciinema.org/a/B2pi2NsEY6WNM7aU9OBIBodvM)
 
-ПРИМЕР: Сравнение двух плоских файлов: YAML(YML).
+---
+
+Сравнение двух плоских файлов: YAML(YML).
 
 [![asciicast](https://asciinema.org/a/6goaDnMwFvwPpbIWO2NhsC3Sq.svg)](https://asciinema.org/a/6goaDnMwFvwPpbIWO2NhsC3Sq)
 
-ПРИМЕР: Сравнение двух файлов c рекурсивной структурой: YAML(YML) или JSON.
+---
+
+Сравнение двух файлов c рекурсивной структурой: YAML(YML) или JSON.
 
 [![asciicast](https://asciinema.org/a/6jZ3XV9H5TrxOdujYCRSfI1rg.svg)](https://asciinema.org/a/6jZ3XV9H5TrxOdujYCRSfI1rg)
 
-ПРИМЕР: Плоский формат отображения - cравнение двух файлов c рекурсивной структурой YAML(YML) или JSON.
+---
+
+Плоский формат отображения - cравнение двух файлов c рекурсивной структурой YAML(YML) или JSON.
 
 [![asciicast](https://asciinema.org/a/3L3J2MUTMNwJSQZ3Q9UkiaxNf.svg)](https://asciinema.org/a/3L3J2MUTMNwJSQZ3Q9UkiaxNf)
 
-ПРИМЕР: вывод отображения сравнения двух файлов в формате JSON.
+---
+
+Вывод результата сравнения в формате JSON.
 
 [![asciicast](https://asciinema.org/a/IqWwqnjCVx7z6BTszNQyYmDQA.svg)](https://asciinema.org/a/IqWwqnjCVx7z6BTszNQyYmDQA)
+
+
+---
 
 Результат работы скрипта - строка, с обнаруженными в файлах отличиями. 
 
