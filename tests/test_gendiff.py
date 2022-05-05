@@ -1,7 +1,5 @@
 import pytest
 from gendiff import generate_diff
-from tests.fixtures.test_results import \
-    RESULT_PLAIN, RESULT_TREE, RESULT_STAT, RESULT_JSON
 
 
 @pytest.fixture
@@ -15,6 +13,10 @@ def paths():
         "tree_json2": "tests/fixtures/file_tree2.json",
         "tree_yml1": "tests/fixtures/file_tree1.yml",
         "tree_yml2": "tests/fixtures/file_tree2.yml",
+        "RESULT_PLAIN": "tests/fixtures/RESULT_PLAIN.txt",
+        "RESULT_TREE": "tests/fixtures/RESULT_TREE.txt",
+        "RESULT_STAT": "tests/fixtures/RESULT_STAT.txt",
+        "RESULT_JSON": "tests/fixtures/RESULT_JSON.txt",
     }
     return paths
 
@@ -27,6 +29,12 @@ def format_name():
         "json": "json",
     }
     return format_name
+
+
+def get_result(path):
+    with open(path) as file:
+        result = file.read()
+    return result
 
 
 def test_generate_diff(paths, format_name):
@@ -65,10 +73,10 @@ def test_generate_diff(paths, format_name):
         paths["tree_json2"],
         format_name["json"],
     )
-    assert result_diff_json == RESULT_PLAIN
-    assert result_diff_yml == RESULT_PLAIN
-    assert result_diff_json_tree == RESULT_TREE
-    assert result_diff_yml_tree == RESULT_TREE
-    assert result_diff_json_tree_stat == RESULT_STAT
-    assert result_diff_yml_tree_stat == RESULT_STAT
-    assert result_diff_json_view == RESULT_JSON
+    assert result_diff_json == get_result(paths["RESULT_PLAIN"])
+    assert result_diff_yml == get_result(paths["RESULT_PLAIN"])
+    assert result_diff_json_tree == get_result(paths["RESULT_TREE"])
+    assert result_diff_yml_tree == get_result(paths["RESULT_TREE"])
+    assert result_diff_json_tree_stat == get_result(paths["RESULT_STAT"])
+    assert result_diff_yml_tree_stat == get_result(paths["RESULT_STAT"])
+    assert result_diff_json_view == get_result(paths["RESULT_JSON"])
