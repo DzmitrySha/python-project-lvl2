@@ -65,8 +65,8 @@ def file_tree2_yml_path():
 async def result_render(request):
     assert getattr(request.module, 'FORMATTER', None)
 
-    result_path = os.path.join(
-        os.path.dirname(__file__), FIXTURES_FOLDER, request.module.FORMATTER)
+    result_path = os.path.join(os.path.dirname(__file__),
+                               FIXTURES_FOLDER, request.module.FORMATTER)
 
     with open(result_path) as file:
         return file.read()
