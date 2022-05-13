@@ -1,4 +1,4 @@
-# test stylish formatter
+# test stylish formatter (for tree structure)
 
 import pytest
 from gendiff import generate_diff
@@ -7,10 +7,16 @@ FORMATTER = 'stylish'
 
 
 @pytest.mark.asyncio
-async def test_json(file1_json_path, file2_json_path, result_render):
-    assert result_render == generate_diff(file1_json_path, file2_json_path)
+async def test_json_tree(file_tree1_json_path,
+                         file_tree2_json_path,
+                         result_render):
+    assert result_render == generate_diff(file_tree1_json_path,
+                                          file_tree2_json_path)
 
 
 @pytest.mark.asyncio
-async def test_yml(file1_yml_path, file2_yml_path, result_render):
-    assert result_render == generate_diff(file1_yml_path, file2_yml_path)
+async def test_yml_tree(file_tree1_yml_path,
+                        file_tree2_yml_path,
+                        result_render):
+    assert result_render == generate_diff(file_tree1_yml_path,
+                                          file_tree2_yml_path)

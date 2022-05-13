@@ -13,7 +13,7 @@
 #         "tree_json2": "tests/fixtures/file_tree2.json",
 #         "tree_yml1": "tests/fixtures/file_tree1.yml",
 #         "tree_yml2": "tests/fixtures/file_tree2.yml",
-#         "RESULT_PLAIN": "tests/fixtures/RESULT_PLAIN.txt",
+#         "RESULT_PLAIN": "tests/fixtures/stylish_plain",
 #         "RESULT_TREE": "tests/fixtures/stylish",
 #         "RESULT_STAT": "tests/fixtures/plain",
 #         "RESULT_JSON": "tests/fixtures/json",
