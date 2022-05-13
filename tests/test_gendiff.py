@@ -14,9 +14,9 @@ def paths():
         "tree_yml1": "tests/fixtures/file_tree1.yml",
         "tree_yml2": "tests/fixtures/file_tree2.yml",
         "RESULT_PLAIN": "tests/fixtures/RESULT_PLAIN.txt",
-        "RESULT_TREE": "tests/fixtures/RESULT_TREE.txt",
-        "RESULT_STAT": "tests/fixtures/RESULT_STAT.txt",
-        "RESULT_JSON": "tests/fixtures/RESULT_JSON.txt",
+        "RESULT_TREE": "tests/fixtures/stylish",
+        "RESULT_STAT": "tests/fixtures/plain",
+        "RESULT_JSON": "tests/fixtures/json",
     }
     return paths
 
