@@ -14,7 +14,7 @@ def make_phrase(phrase_type, path="", value1="", value2=""):
 def is_tree(dictionary):
     if isinstance(dictionary, dict):
         return any(isinstance(value, dict) for value in dictionary.values())
-    return dictionary
+    return False
 
 
 def edit_value(value):
