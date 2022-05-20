@@ -3,8 +3,8 @@ from gendiff.constants import ADDED, REMOVED, CHANGED, DICT, UNCHANGED
 
 
 def edit_value(value):
-    if isinstance(value, int):
-        return str(value).lower()
+    if isinstance(value, bool):
+        return "true" if value else "false"
     elif value is None:
         return "null"
     return value
