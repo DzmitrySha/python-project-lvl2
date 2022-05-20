@@ -1,9 +1,9 @@
 # make diff module
 
-from constants import UNCHANGED, CHANGED, DICT, REMOVED, ADDED
+from gendiff.constants import UNCHANGED, CHANGED, DICT, REMOVED, ADDED
 
 
-def make_diff(dict_1, dict_2) -> dict:
+def make_tree(dict_1, dict_2) -> dict:
     cross_dicts_keys = dict_1.keys() & dict_2.keys()
     dict1_unique_keys = dict_1.keys() - dict_2.keys()
     dict2_unique_keys = dict_2.keys() - dict_1.keys()
@@ -21,7 +21,7 @@ def make_diff(dict_1, dict_2) -> dict:
         elif isinstance(child_1, dict) and isinstance(child_2, dict):
             diff[key] = {
                 "status": DICT,
-                "diff": make_diff(child_1, child_2),
+                "diff": make_tree(child_1, child_2),
             }
         else:
             diff[key] = {
