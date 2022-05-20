@@ -1,4 +1,15 @@
-# make difference module
+# generate diff module
+
+# from gendiff.cli import parser
+# from gendiff.tree import make_diff
+# from gendiff.formatter import format_
+#
+#
+# def generate_diff(file_path1: str, file_path2: str, format_name="stylish"):
+#     dict_1, dict_2 = parser(file_path1, file_path2)
+#     diff = make_diff(dict_1, dict_2)
+#     return format_(format_name, diff)
+
 
 from gendiff.cli import parser
 from gendiff.formatters import format_stylish, format_plain, format_json
