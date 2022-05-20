@@ -3,17 +3,16 @@
 from gendiff.formatters import format_stylish, format_plain, format_json
 
 
-CHOOSE_FORMAT = {
+FORMATS = {
     "stylish": format_stylish,
     "plain": format_plain,
     "json": format_json,
 }
 
 
-def format_(format_name, tree):
-    if format_name in CHOOSE_FORMAT:
-        diff_result = CHOOSE_FORMAT[format_name](tree)
-        return diff_result
+def format_(tree, format_name="stylish"):
+    if format_name in FORMATS:
+        return FORMATS[format_name](tree)
     else:
         return "ERROR: Incorrect format name. " \
                "Please check that the format name is correct."
