@@ -1,6 +1,6 @@
 # make difference module
 
-from gendiff.enter_parser import parser
+from gendiff.cli import parser
 from gendiff.formatters import format_stylish, format_plain, format_json
 from gendiff.constants import ADDED, REMOVED, CHANGED, UNCHANGED, DICT
 
