@@ -1,42 +1,54 @@
-# make diff module
+# build internal tree module
 
-from gendiff.constants import UNCHANGED, CHANGED, DICT, REMOVED, ADDED
+def make_tree(dict_1, dict_2) -> list:
+    cross_dicts_keys = sorted(dict_1.keys() & dict_2.keys())
+    dict1_unique_keys = sorted(dict_1.keys() - dict_2.keys())
+    dict2_unique_keys = sorted(dict_2.keys() - dict_1.keys())
 
-
-def make_tree(dict_1, dict_2) -> dict:
-    cross_dicts_keys = dict_1.keys() & dict_2.keys()
-    dict1_unique_keys = dict_1.keys() - dict_2.keys()
-    dict2_unique_keys = dict_2.keys() - dict_1.keys()
-
-    diff = {}
+    result = []
     for key in cross_dicts_keys:
         child_1 = dict_1.get(key)
         child_2 = dict_2.get(key)
 
         if child_1 == child_2:
-            diff[key] = {
-                "status": UNCHANGED,
-                "diff": {key: child_1},
-            }
+            result.append({
+                'key': key,
+                'type': 'unchanged',
+                'value': dict_1[key],
+            })
         elif isinstance(child_1, dict) and isinstance(child_2, dict):
-            diff[key] = {
-                "status": DICT,
-                "diff": make_tree(child_1, child_2),
-            }
+            result.append({
+                'key': key,
+                'type': 'nested',
+                'children': make_tree(dict_1[key], dict_2[key]),
+            })
         else:
-            diff[key] = {
-                "status": CHANGED,
-                "diff_rem": {key: child_1},
-                "diff_add": {key: child_2},
-            }
+            result.append({
+                'key': key,
+                'type': 'changed',
+                'old_value': dict_1[key],
+                'new_value': dict_2[key],
+            })
+
     for key in dict1_unique_keys:
-        diff[key] = {
-            "status": REMOVED,
-            "diff": {key: dict_1[key]},
-        }
+        result.append({
+            'key': key,
+            'type': 'removed',
+            'value': dict_1[key]
+        })
+
     for key in dict2_unique_keys:
-        diff[key] = {
-            "status": ADDED,
-            "diff": {key: dict_2[key]},
-        }
-    return dict(sorted(diff.items()))
+        result.append({
+            'key': key,
+            'type': 'added',
+            'value': dict_2[key]
+        })
+    result = sorted(result, key=lambda child: child['key'])
+    return result
+
+
+def build_tree(dict1, dict2):
+    return {
+        'type': 'root',
+        'children': make_tree(dict1, dict2)
+    }
