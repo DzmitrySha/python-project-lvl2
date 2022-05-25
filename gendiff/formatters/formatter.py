@@ -13,6 +13,5 @@ FORMATS = {
 def format_(tree, format_name="stylish"):
     if format_name in FORMATS:
         return FORMATS[format_name](tree)
-    else:
-        return "ERROR: Incorrect format name. " \
-               "Please check that the format name is correct."
+    return "ERROR: Incorrect format name. " \
+           "Please check that the format name is correct."
