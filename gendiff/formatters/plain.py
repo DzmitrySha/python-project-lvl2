@@ -1,5 +1,4 @@
 # make format plain module
-from gendiff.constants import ADDED, REMOVED, CHANGED, DICT, COMPLEX
 
 
 def make_phrase(phrase_type, path="", value1="", value2=""):
@@ -11,52 +10,45 @@ def make_phrase(phrase_type, path="", value1="", value2=""):
     return phrases[phrase_type]
 
 
-def is_tree(dictionary):
-    if isinstance(dictionary, dict):
-        return any(isinstance(value, dict) for value in dictionary.values())
-    return False
-
-
-def edit_value(value):
+def to_string(value):
+    if isinstance(value, dict):
+        return '[complex value]'
+    if isinstance(value, bool):
+        return "true" if value else "false"
     if isinstance(value, int):
-        return str(value).lower()
-    elif value is None:
+        return value
+    if value is None:
         return "null"
     return f"'{value}'"
 
 
-def make_value(value, key):
-    if is_tree(value):
-        return COMPLEX
-    return edit_value(value[key])
-
-
-def format_plain(diff: dict, node=""):
+def format_plain(node, n=""):
+    children = node.get('children')
     result = []
-    for key, value in diff.items():
-        status = value["status"]
 
-        if node:
-            path = node + f".{key}"
+    for child in children:
+        if n:
+            path = n + f".{child['key']}"
         else:
-            path = f"{key}"
+            path = f"{child['key']}"
 
-        if status == DICT:
-            result.append(format_plain(value["diff"], path))
-        elif status == ADDED:
-            value2 = make_value(value["diff"], key)
-            phrase = make_phrase("added", edit_value(path),
-                                 value2=value2)
+        if child['type'] == 'nested':
+            result.append(format_plain(child, path))
+
+        elif child['type'] == 'added':
+            value2 = to_string(child["value"])
+            phrase = make_phrase("added", to_string(path), value2=value2)
             result.append(phrase)
-        elif status == REMOVED:
-            value2 = make_value(value["diff"], key)
-            phrase = make_phrase("removed", edit_value(path),
-                                 value2=value2)
+
+        elif child['type'] == 'removed':
+            value2 = to_string(child["value"])
+            phrase = make_phrase("removed", to_string(path), value2=value2)
             result.append(phrase)
-        elif status == CHANGED:
-            value1 = make_value(value["diff_rem"], key)
-            value2 = make_value(value["diff_add"], key)
-            phrase = make_phrase("updated", edit_value(path),
+
+        elif child['type'] == 'changed':
+            value1 = to_string(child["old_value"])
+            value2 = to_string(child["new_value"])
+            phrase = make_phrase("updated", to_string(path),
                                  value1=value1, value2=value2)
             result.append(phrase)
 
