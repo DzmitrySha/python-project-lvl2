@@ -1,11 +1,11 @@
 # make format plain module
 
-
-def make_phrase(phrase_type, path="", value1="", value2=""):
+def make_phrase(phrase_type, path="", old_value="", new_value=""):
     phrases = {
         "removed": f"Property {path} was removed",
-        "added": f"Property {path} was added with value: {value2}",
-        "updated": f"Property {path} was updated. From {value1} to {value2}",
+        "added": f"Property {path} was added with value: {new_value}",
+        "updated": f"Property {path} was updated."
+                   f" From {old_value} to {new_value}",
     }
     return phrases[phrase_type]
 
@@ -22,33 +22,34 @@ def to_string(value):
     return f"'{value}'"
 
 
-def format_plain(node, root_node=""):
+def format_plain(node, path=""):
     children = node.get('children')
     result = []
 
     for child in children:
-        if root_node:
-            path = root_node + f".{child['key']}"
+        if path:
+            current_path = path + f".{child['key']}"
         else:
-            path = f"{child['key']}"
+            current_path = f"{child['key']}"
 
         if child['type'] == 'nested':
-            result.append(format_plain(child, path))
+            result.append(format_plain(child, current_path))
 
         elif child['type'] == 'removed':
-            phrase = make_phrase("removed", to_string(path))
+            phrase = make_phrase("removed", to_string(current_path))
             result.append(phrase)
 
         elif child['type'] == 'added':
             added_value = to_string(child["value"])
-            phrase = make_phrase("added", to_string(path), value2=added_value)
+            phrase = make_phrase("added", to_string(current_path),
+                                 new_value=added_value)
             result.append(phrase)
 
         elif child['type'] == 'changed':
             old_value = to_string(child["old_value"])
             new_value = to_string(child["new_value"])
-            phrase = make_phrase("updated", to_string(path),
-                                 value1=old_value, value2=new_value)
+            phrase = make_phrase("updated", to_string(current_path),
+                                 old_value=old_value, new_value=new_value)
             result.append(phrase)
 
     return "\n".join(result)
