@@ -22,34 +22,33 @@ def to_string(value):
     return f"'{value}'"
 
 
-def format_plain(node, n=""):
+def format_plain(node, root_node=""):
     children = node.get('children')
     result = []
 
     for child in children:
-        if n:
-            path = n + f".{child['key']}"
+        if root_node:
+            path = root_node + f".{child['key']}"
         else:
             path = f"{child['key']}"
 
         if child['type'] == 'nested':
             result.append(format_plain(child, path))
 
-        elif child['type'] == 'added':
-            value2 = to_string(child["value"])
-            phrase = make_phrase("added", to_string(path), value2=value2)
+        elif child['type'] == 'removed':
+            phrase = make_phrase("removed", to_string(path))
             result.append(phrase)
 
-        elif child['type'] == 'removed':
-            value2 = to_string(child["value"])
-            phrase = make_phrase("removed", to_string(path), value2=value2)
+        elif child['type'] == 'added':
+            added_value = to_string(child["value"])
+            phrase = make_phrase("added", to_string(path), value2=added_value)
             result.append(phrase)
 
         elif child['type'] == 'changed':
-            value1 = to_string(child["old_value"])
-            value2 = to_string(child["new_value"])
+            old_value = to_string(child["old_value"])
+            new_value = to_string(child["new_value"])
             phrase = make_phrase("updated", to_string(path),
-                                 value1=value1, value2=value2)
+                                 value1=old_value, value2=new_value)
             result.append(phrase)
 
     return "\n".join(result)
