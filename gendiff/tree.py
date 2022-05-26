@@ -14,34 +14,34 @@ def make_tree(dict_1, dict_2) -> list:
             result.append({
                 'key': key,
                 'type': 'unchanged',
-                'value': child_1,
+                'value': dict_1[key],
             })
         elif isinstance(child_1, dict) and isinstance(child_2, dict):
             result.append({
                 'key': key,
                 'type': 'nested',
-                'children': make_tree(child_1, child_2),
+                'children': make_tree(dict_1[key], dict_2[key]),
             })
         else:
             result.append({
                 'key': key,
                 'type': 'changed',
-                'old_value': child_1,
-                'new_value': child_2,
+                'old_value': dict_1[key],
+                'new_value': dict_2[key],
             })
 
     for key in dict1_unique_keys:
         result.append({
             'key': key,
             'type': 'removed',
-            'value': child_1
+            'value': dict_1[key]
         })
 
     for key in dict2_unique_keys:
         result.append({
             'key': key,
             'type': 'added',
-            'value': child_2
+            'value': dict_2[key]
         })
     result = sorted(result, key=lambda node: node['key'])
     return result
