@@ -1,6 +1,4 @@
 # make stylish module
-from gendiff.constants import ADDED, REMOVED, UNCHANGED
-
 
 def get_indent(depth, node_type='root'):
     indent = "    "
@@ -11,17 +9,17 @@ def get_indent(depth, node_type='root'):
 
 def to_string(value, depth):
     indent = get_indent(depth)
-    if isinstance(value, dict):
-        lines = []
-        for k, v in value.items():
-            lines.append(f"{indent}{UNCHANGED}{k}: {to_string(v, depth + 1)}")
-        result = "\n".join(lines)
-        return f'{{\n{result}\n{indent}}}'
 
     if isinstance(value, bool):
         return 'true' if value else 'false'
-    elif value is None:
+    if value is None:
         return "null"
+    if isinstance(value, dict):
+        lines = []
+        for k, v in value.items():
+            lines.append(f"{indent}    {k}: {to_string(v, depth + 1)}")
+        result = "\n".join(lines)
+        return f'{{\n{result}\n{indent}}}'
     return value
 
 
@@ -43,8 +41,8 @@ def format_stylish(node, depth=0):
         return f"{indent}{node['key']}: {{\n{result}\n{indent}}}"
 
     if node['type'] == 'changed':
-        line1 = f"{indent}{REMOVED}{node['key']}: {formatted_value1}\n"
-        line2 = f"{indent}{ADDED}{node['key']}: {formatted_value2}"
+        line1 = f"{indent}- {node['key']}: {formatted_value1}\n"
+        line2 = f"{indent}+ {node['key']}: {formatted_value2}"
         result = line1 + line2
         return result
 
@@ -52,7 +50,7 @@ def format_stylish(node, depth=0):
         return f"{indent}{node['key']}: {formatted_value}"
 
     if node['type'] == 'removed':
-        return f"{indent}{REMOVED}{node['key']}: {formatted_value}"
+        return f"{indent}- {node['key']}: {formatted_value}"
 
     if node['type'] == 'added':
-        return f"{indent}{ADDED}{node['key']}: {formatted_value}"
+        return f"{indent}+ {node['key']}: {formatted_value}"
