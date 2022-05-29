@@ -19,7 +19,6 @@ def parser(file_path1: str, file_path2: str) -> tuple:
         dict_2 = yaml.safe_load(open(file_path2))
 
     else:
-        raise TypeError(f"Invalid file extension. "
-                        f"Must be: .JSON, .YAML or .YML")
+        raise OSError("Invalid file extension. Must be: .JSON, .YAML or .YML")
 
     return dict(dict_1), dict(dict_2)
