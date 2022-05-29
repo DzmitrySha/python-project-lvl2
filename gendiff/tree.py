@@ -1,6 +1,6 @@
 # build internal tree module
 
-def make_tree(dict_1, dict_2) -> list:
+def make_tree(dict_1: dict, dict_2: dict) -> list:
     keys = dict_1.keys() | dict_2.keys()
 
     result = []
@@ -43,8 +43,8 @@ def make_tree(dict_1, dict_2) -> list:
     return result
 
 
-def build_tree(dict1, dict2):
+def build_tree(dict_1: dict, dict_2: dict):
     return {
         'type': 'root',
-        'children': make_tree(dict1, dict2)
+        'children': make_tree(dict_1, dict_2)
     }
