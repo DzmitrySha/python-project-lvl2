@@ -2,5 +2,5 @@
 import json
 
 
-def format_json(diff):
-    return json.dumps(diff, indent=4)
+def format_json(tree: list) -> json:
+    return json.dumps(tree, indent=4)
