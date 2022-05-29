@@ -1,19 +1,24 @@
 # make stylish module
 
-def get_indent(depth, node_type='root'):
-    indent = "    "
-    if node_type == 'changed' or node_type == 'removed' or node_type == 'added':
+def get_indent(depth: int, node_type='root') -> str:
+    indent = '    '
+    marked_nodes = ['changed', 'removed', 'added']
+    unmarked_nodes = ['root', 'nested', 'unchanged']
+
+    if node_type in marked_nodes:
         return (depth * indent)[:-2]
-    return depth * indent
+    elif node_type in unmarked_nodes:
+        return depth * indent
+    else:
+        raise ValueError(f'Unknown node: {node_type}')
 
 
-def to_string(value, depth):
+def to_string(value, depth: int) -> str:
     indent = get_indent(depth)
-
     if isinstance(value, bool):
         return 'true' if value else 'false'
     if value is None:
-        return "null"
+        return 'null'
     if isinstance(value, dict):
         lines = []
         for k, v in value.items():
@@ -23,7 +28,7 @@ def to_string(value, depth):
     return value
 
 
-def format_stylish(node, depth=0):
+def format_stylish(node: dict, depth=0) -> str:
     children = node.get('children')
     indent = get_indent(depth, node['type'])
     formatted_value = to_string(node.get('value'), depth)
