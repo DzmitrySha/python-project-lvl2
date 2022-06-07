@@ -1,6 +1,6 @@
 # generate diff module
 
-from gendiff.cli import parser
+from gendiff.parser import parser
 from gendiff.tree import build_tree
 from gendiff.formatters import format_
 

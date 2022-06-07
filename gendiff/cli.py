@@ -1,24 +1,18 @@
 # parsing module
 
-import os
-import json
-import yaml
+import argparse
 
 
-def parser(file_path1: str, file_path2: str) -> tuple:
-    """Make dicts from paths."""
-    file1_ext = os.path.splitext(file_path1)
-    file2_ext = os.path.splitext(file_path2)
-
-    if (file1_ext and file2_ext) == '.json':
-        dict_1 = json.load(open(file_path1))
-        dict_2 = json.load(open(file_path2))
-
-    elif (file1_ext and file2_ext) == '.yaml' or '.yml':
-        dict_1 = yaml.safe_load(open(file_path1))
-        dict_2 = yaml.safe_load(open(file_path2))
-
-    else:
-        raise OSError("Invalid file extension. Must be: .JSON, .YAML or .YML")
-
-    return dict(dict_1), dict(dict_2)
+def parse_args():
+    parser = argparse.ArgumentParser(
+        prog='gendiff',
+        description="Compares two configuration files "
+                    "and shows a difference.")
+    parser.add_argument('first_file', type=str)
+    parser.add_argument('second_file', type=str)
+    parser.add_argument('-f', '--format',
+                        choices=["stylish", "plain", "json"],
+                        default="stylish",
+                        help='set format of output')
+    args = parser.parse_args()
+    return args.first_file, args.second_file, args.format
