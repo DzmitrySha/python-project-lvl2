@@ -1,14 +1,13 @@
 # make stylish module
 
 def get_indent(depth: int, node_type='root') -> str:
-    indent = '    '
+    indent = " "
     marked_nodes = ['changed', 'removed', 'added']
     unmarked_nodes = ['root', 'nested', 'unchanged']
-
     if node_type in marked_nodes:
-        return (depth * indent)[:-2]
+        return indent * (depth * 4 - 2)
     elif node_type in unmarked_nodes:
-        return depth * indent
+        return indent * depth * 4
     else:
         raise ValueError(f'Unknown node: {node_type}')
 
@@ -28,7 +27,7 @@ def to_string(value, depth: int) -> str:
     return value
 
 
-def format_stylish(node: dict, depth=0) -> str:
+def iter_(node: dict, depth=0) -> str:
     children = node.get('children')
     indent = get_indent(depth, node['type'])
     formatted_value = to_string(node.get('value'), depth)
@@ -36,12 +35,12 @@ def format_stylish(node: dict, depth=0) -> str:
     formatted_value2 = to_string(node.get('new_value'), depth)
 
     if node['type'] == 'root':
-        lines = map(lambda child: format_stylish(child, depth + 1), children)
+        lines = map(lambda child: iter_(child, depth + 1), children)
         result = '\n'.join(lines)
         return f'{{\n{result}\n}}'
 
     if node['type'] == 'nested':
-        lines = map(lambda child: format_stylish(child, depth + 1), children)
+        lines = map(lambda child: iter_(child, depth + 1), children)
         result = '\n'.join(lines)
         return f"{indent}{node['key']}: {{\n{result}\n{indent}}}"
 
@@ -59,3 +58,7 @@ def format_stylish(node: dict, depth=0) -> str:
 
     if node['type'] == 'added':
         return f"{indent}+ {node['key']}: {formatted_value}"
+
+
+def format_stylish(node):
+    return iter_(node)
