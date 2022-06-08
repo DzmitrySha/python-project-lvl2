@@ -24,18 +24,15 @@ def to_string(value):
     return f"'{value}'"
 
 
-def format_plain(node: dict, path='') -> str:
+def iter_(node: dict, path='') -> str:
     children = node.get('children')
     result = []
 
     for child in children:
-        if path:
-            current_path = path + f".{child['key']}"
-        else:
-            current_path = f"{child['key']}"
+        current_path = f"{path}{child['key']}"
 
         if child['type'] == 'nested':
-            result.append(format_plain(child, current_path))
+            result.append(iter_(child, f"{current_path}."))
 
         elif child['type'] == 'removed':
             phrase = make_phrase("removed", to_string(current_path))
@@ -61,3 +58,7 @@ def format_plain(node: dict, path='') -> str:
             raise ValueError(f"Unknown child type: {child['type']}")
 
     return "\n".join(result)
+
+
+def format_plain(node):
+    return iter_(node)
