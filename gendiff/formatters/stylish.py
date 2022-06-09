@@ -60,5 +60,5 @@ def iter_(node: dict, depth=0) -> str:
         return f"{indent}+ {node['key']}: {formatted_value}"
 
 
-def format_stylish(node):
+def format_stylish(node: dict):
     return iter_(node)
