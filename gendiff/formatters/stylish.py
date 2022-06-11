@@ -5,17 +5,21 @@ def get_indent(depth: int) -> str:
 
 
 def to_string(value, depth: int) -> str:
-    indent = get_indent(depth)
     if isinstance(value, bool):
         return 'true' if value else 'false'
+
     if value is None:
         return 'null'
+
     if isinstance(value, dict):
+        indent = get_indent(depth)
+        current_indent = indent + (" " * 6)
         lines = []
         for k, v in value.items():
-            lines.append(f"{indent}      {k}: {to_string(v, depth + 1)}")
+            lines.append(f"{current_indent}{k}: {to_string(v, depth + 1)}")
         result = "\n".join(lines)
         return f'{{\n{result}\n  {indent}}}'
+
     return value
 
 
