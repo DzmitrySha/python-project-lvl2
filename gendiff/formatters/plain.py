@@ -14,20 +14,17 @@ def to_string(value):
 
 
 def iter_(node: dict, path="") -> str:
-    if node['type'] == 'unchanged':
-        return ''
-
     children = node.get('children')
     current_path = f"{path}{node.get('key')}"
 
     if node['type'] == 'root':
         lines = map(lambda child: iter_(child, path), children)
-        result = "\n".join(lines)
-        return result.replace('\n\n', '\n')
+        result = "\n".join(filter(bool, lines))
+        return result
 
     if node['type'] == 'nested':
         lines = map(lambda child: iter_(child, f"{current_path}."), children)
-        result = "\n".join(lines)
+        result = "\n".join(filter(bool, lines))
         return result
 
     if node['type'] == 'removed':
@@ -43,8 +40,6 @@ def iter_(node: dict, path="") -> str:
         formatted_new_value = to_string(node.get('new_value'))
         return f"Property '{current_path}' was updated. " \
                f"From {formatted_old_value} to {formatted_new_value}"
-
-    raise TypeError(f"Unknown node type: '{node['type']}'")
 
 
 def format_plain(node: dict):
