@@ -3,7 +3,8 @@
 import argparse
 
 
-def parse_args_():
+def parsing_args():
+    """Parsing args from user command line"""
     parser = argparse.ArgumentParser(
         prog='gendiff',
         description="Compares two configuration files "
