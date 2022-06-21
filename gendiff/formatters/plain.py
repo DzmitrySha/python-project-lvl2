@@ -1,4 +1,4 @@
-# make format plain module
+"""Plain module - apply plain view to diff"""
 
 
 def to_string(value):
@@ -42,5 +42,5 @@ def iter_(node: dict, path="") -> str:
                f"From {formatted_old_value} to {formatted_new_value}"
 
 
-def format_plain(node: dict):
+def format_(node: dict):
     return iter_(node)

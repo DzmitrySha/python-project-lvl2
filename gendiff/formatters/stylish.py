@@ -1,4 +1,5 @@
-# make stylish module
+"""Stylish module - apply stylish view to diff (by default)"""
+
 
 def get_indent(depth: int) -> str:
     return " " * (depth * 4 - 2)
@@ -56,5 +57,5 @@ def iter_(node: dict, depth=0) -> str:
         return f"{indent}+ {node['key']}: {formatted_value}"
 
 
-def format_stylish(node: dict):
+def format_(node: dict):
     return iter_(node)
