@@ -1,4 +1,4 @@
-# test stylish formatter (for tree structure)
+"""Test stylish formatter (for tree structure)"""
 
 import pytest
 from gendiff import generate_diff

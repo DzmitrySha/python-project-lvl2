@@ -1,4 +1,4 @@
-# test json formatter (for tree structure)
+"""Test json formatter (for tree structure)"""
 
 import pytest
 from gendiff import generate_diff

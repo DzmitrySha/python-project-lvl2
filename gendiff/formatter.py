@@ -1,4 +1,4 @@
-# make diff result module
+"""Formatter module - formatting the tree with the selected formatter"""
 
 from gendiff.formatters import format_stylish, format_plain, format_json
 

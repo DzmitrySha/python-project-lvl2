@@ -1,4 +1,4 @@
-# Parser module
+"""Parser module"""
 
 import json
 import yaml

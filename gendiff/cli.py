@@ -1,4 +1,4 @@
-# parsing module
+"""Parser module - parsing args from user command line"""
 
 import argparse
 

@@ -1,4 +1,4 @@
-# generate diff module
+"""Generate Diff - main module"""
 
 import os
 from gendiff.parser import parse
